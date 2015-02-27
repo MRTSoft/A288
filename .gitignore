@@ -121,7 +121,7 @@ DocProject/Help/Html2
 DocProject/Help/html
 
 # Remove Doxygen output
-A288/docs
+A288/docs/html
 
 # Click-Once directory
 publish/
