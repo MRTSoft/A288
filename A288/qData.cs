@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 using System.IO;
 
 
-namespace MedQ
+namespace A288
 {
     /// <summary>
     /// Provides the structure for organizing the questions and support for serializing and deserializing data.

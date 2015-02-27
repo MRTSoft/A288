@@ -18,7 +18,7 @@ using System.Windows.Shapes;
 using System.Xml;
 using System.IO;
 
-namespace MedQ
+namespace A288
 {
     //! \brief Class that handles interaction logic for %Create Quizz window
     //! 
@@ -27,16 +27,14 @@ namespace MedQ
 
     public partial class Create : Window
     {
-        //TODO Write documentation for Create class
-        //TODO Put the functions in propper order
-        //TODO [OPTIONAL] Add Graphical elements
-        //TODO [OPTIONAL] Add points to the test
+        //TODO [OPTIONAL] Add graphical elements.
+        //TODO [OPTIONAL] Add a marking system to the test (max points or smth like that).
 
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
         //                                          M E M B E R S
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-        private List<qData> QUIZZ;//!< Contains the questions.
+        private List<qData> QUIZ;//!< Contains the questions.
         private int curentQ;//!< The curent question that is being edited. \note The first question is refered as 1 but is stored in \ref QUIZZ[0]
 
 
@@ -52,8 +50,8 @@ namespace MedQ
         public Create()
         {
             InitializeComponent();
-            QUIZZ = new List<qData>(1);
-            QUIZZ.Add(new qData());
+            QUIZ = new List<qData>(1);
+            QUIZ.Add(new qData());
             curentQ = 1;
             nQuestions.Text = "0";
             nTime.Text = "0";
@@ -83,9 +81,9 @@ namespace MedQ
             if (ok == true)
             {
                 string file = dlg.FileName;
-                qData.XmlToObjects(ref QUIZZ, file);
+                qData.XmlToObjects(ref QUIZ, file);
                 removeInvalid();
-                if (QUIZZ.Count() > 0)
+                if (QUIZ.Count() > 0)
                     loadQuestion(1);
                 curentQ = 1;
                 nTime.Text = qData.MaxTime.ToString();
@@ -109,9 +107,9 @@ namespace MedQ
             if (ok == true)
             {
                 string file = dlg.FileName;
-                qData.TxtToObjects(ref QUIZZ, file);
+                qData.TxtToObjects(ref QUIZ, file);
                 removeInvalid();
-                if (QUIZZ.Count() > 0)
+                if (QUIZ.Count() > 0)
                     loadQuestion(1);
                 curentQ = 1;
                 nTime.Text = qData.MaxTime.ToString();
@@ -169,28 +167,29 @@ namespace MedQ
         private void bQPrev_Click(object sender, RoutedEventArgs e)
         {
             string er = "";
-            if (QUIZZ[curentQ - 1].Validate(ref er) != true)
+            if (QUIZ[curentQ - 1].Validate(ref er) != true)
             {
-                QUIZZ.RemoveAt(curentQ - 1);
+                QUIZ.RemoveAt(curentQ - 1);
             }
             else saveCurQ();
             loadQuestion(curentQ - 1);
         }
 
         /// <summary>
-        /// 
+        /// Delete the current question.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// \note None of the parameters is used.
+        /// <param name="sender">The bDelete Button.</param>
+        /// <param name="e">The event args.</param>
         private void bDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (QUIZZ.Count < 1) return;
-            if (QUIZZ.Count == 1) QUIZZ[0] = new qData();
+            if (QUIZ.Count < 1) return;
+            if (QUIZ.Count == 1) QUIZ[0] = new qData();
             else
             {
-                QUIZZ.RemoveAt(curentQ - 1);
+                QUIZ.RemoveAt(curentQ - 1);
             }
-            if (curentQ > QUIZZ.Count) curentQ = QUIZZ.Count;
+            if (curentQ > QUIZ.Count) curentQ = QUIZ.Count;
             loadQuestion(curentQ);
         }
 
@@ -198,10 +197,10 @@ namespace MedQ
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         /// <summary>
-        /// 
+        /// Transforms a textBox control into a basic numeric control.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The textBox that raised the event.</param>
+        /// <param name="e">The event args.</param>
         private void tBoxNumberTextChanged(object sender, TextChangedEventArgs e)
         {
             if (sender.Equals(nTime))//If the time is modified
@@ -237,7 +236,7 @@ namespace MedQ
                     int usable = 0;
                     if (int.TryParse(nQuestions.Text, out usable))
                     {
-                        if (usable > QUIZZ.Count) usable = QUIZZ.Count;
+                        if (usable > QUIZ.Count) usable = QUIZ.Count;
                         qData.UsableQuestions = usable;
                         nQuestions.Text = usable.ToString();
                     }
@@ -250,10 +249,11 @@ namespace MedQ
         }//TextBox
 
         /// <summary>
-        /// 
+        /// Opens an SaveFileDialog and saves the quiz as an XML file
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// After a save location is chosen this calls the XmlToFile method.
+        /// <param name="sender">The bSave Button.</param>
+        /// <param name="e">The event args.</param>
         private void bSave_Xml(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
@@ -265,13 +265,14 @@ namespace MedQ
                 saveCurQ();
                 removeInvalid();
                 string file = dlg.FileName;
-                qData.XmlToFile(QUIZZ, file);
+                qData.XmlToFile(QUIZ, file);
             }
-        }
+        }//bSave_Xml
 
         /// <summary>
-        /// 
+        /// Opens an SaveFileDialog and saves the quiz as a TXT file
         /// </summary>
+        /// After a save location is chosen this calls the TxtToFile method.
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void bSave_Txt(object sender, RoutedEventArgs e)
@@ -285,8 +286,7 @@ namespace MedQ
                 saveCurQ();
                 removeInvalid();
                 string file = dlg.FileName;
-                //qData.XmlToFile(QUIZZ, file);
-                qData.TxtToFile(QUIZZ, file);
+                qData.TxtToFile(QUIZ, file);
             }
         }
 
@@ -296,23 +296,24 @@ namespace MedQ
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
         /// <summary>
-        /// 
+        /// Loads a specific question on the WPF controls.
         /// </summary>
-        /// <param name="nr"></param>
+        /// \note This function calls refreshCombolist();
+        /// <param name="nr">The index of the question + 1.</param>
         private void loadQuestion(int nr)// index starts with 1
         {
-            if (nr > QUIZZ.Count())//we need a new Question
+            if (nr > QUIZ.Count())//we need a new Question
             {
-                QUIZZ.Add(new qData());
+                QUIZ.Add(new qData());
             }
 
-            lqNr.Content = "Question " + nr.ToString() + " of " + (QUIZZ.Count()).ToString();
-            tbText.Text = QUIZZ[nr - 1].Text;
-            tbA1.Text = QUIZZ[nr - 1].Vars[0]; cb1.IsChecked = QUIZZ[nr - 1].Ans[0];
-            tbA2.Text = QUIZZ[nr - 1].Vars[1]; cb2.IsChecked = QUIZZ[nr - 1].Ans[1];
-            tbA3.Text = QUIZZ[nr - 1].Vars[2]; cb3.IsChecked = QUIZZ[nr - 1].Ans[2];
-            tbA4.Text = QUIZZ[nr - 1].Vars[3]; cb4.IsChecked = QUIZZ[nr - 1].Ans[3];
-            tbA5.Text = QUIZZ[nr - 1].Vars[4]; cb5.IsChecked = QUIZZ[nr - 1].Ans[4];
+            lqNr.Content = "Question " + nr.ToString() + " of " + (QUIZ.Count()).ToString();
+            tbText.Text = QUIZ[nr - 1].Text;
+            tbA1.Text = QUIZ[nr - 1].Vars[0]; cb1.IsChecked = QUIZ[nr - 1].Ans[0];
+            tbA2.Text = QUIZ[nr - 1].Vars[1]; cb2.IsChecked = QUIZ[nr - 1].Ans[1];
+            tbA3.Text = QUIZ[nr - 1].Vars[2]; cb3.IsChecked = QUIZ[nr - 1].Ans[2];
+            tbA4.Text = QUIZ[nr - 1].Vars[3]; cb4.IsChecked = QUIZ[nr - 1].Ans[3];
+            tbA5.Text = QUIZ[nr - 1].Vars[4]; cb5.IsChecked = QUIZ[nr - 1].Ans[4];
             bQPrev.Content = "Question " + (nr - 1).ToString();
             bQNext.Content = "Question " + (nr + 1).ToString();
             if (nr - 1 <= 0) bQPrev.Visibility = System.Windows.Visibility.Hidden;
@@ -323,10 +324,10 @@ namespace MedQ
         }
 
         /// <summary>
-        /// 
+        /// Truncate a string so that it contains only numerical characters.
         /// </summary>
-        /// <param name="text"></param>
-        /// <returns></returns>
+        /// <param name="text">The text to be truncated</param>
+        /// <returns>A string containing only numerical characters or an empty string.</returns>
         private string parseText(string text)
         {
             for (int i = 0; i < text.Length; i++)
@@ -340,13 +341,13 @@ namespace MedQ
         }
 
         /// <summary>
-        /// 
+        /// Keeps the ComboList in sync with the questions from the quiz.
         /// </summary>
         private void refreshComboList()
         {
             cbNumber.SelectionChanged -= comboBox_SelectionChanged;
             cbNumber.Items.Clear();
-            for (int i = 0; i < QUIZZ.Count; i++)
+            for (int i = 0; i < QUIZ.Count; i++)
             {
                 Label lbl = new Label();
                 lbl.FontSize = 20.0d;
@@ -360,27 +361,30 @@ namespace MedQ
         }
 
         /// <summary>
-        /// 
+        /// Removes all the invalid question by calling Validate on each of them.
         /// </summary>
+        /// Also it calls the refreshComboList method.
+        /// \note This function doesn't throw errors.
         private void removeInvalid()
         {
             List<qData> save = new List<qData>();
             string er = "";
-            foreach (qData q in QUIZZ)
+            foreach (qData q in QUIZ)
             {
                 if (q.Validate(ref er))
                     save.Add(q);
             }
-            QUIZZ.Clear();
-            QUIZZ.AddRange(save);
+            QUIZ.Clear();
+            QUIZ.AddRange(save);
             refreshComboList();
         }
 
         /// <summary>
-        /// 
+        /// Saves or updates the curent question into the QUIZ list.
         /// </summary>
-        /// <param name="supressError"></param>
-        /// <returns></returns>
+        /// This function can also display errors if the question is invalid.
+        /// <param name="supressError">If this is set to 'true' then no errors will be shown to the user.</param>
+        /// <returns>'true' if the question was saved/updated with succes and 'false' otherwise.</returns>
         private bool saveCurQ(bool supressError=false)
         {
             int i = curentQ - 1;
@@ -390,7 +394,7 @@ namespace MedQ
             {
                 try
                 {
-                    QUIZZ[curentQ - 1] = q;
+                    QUIZ[curentQ - 1] = q;
                     return true;
                 }
                 catch (Exception ex)

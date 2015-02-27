@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace MedQ
+namespace A288
 {
     /// <summary>
     /// The Practice class defines a form that is used to take a test.

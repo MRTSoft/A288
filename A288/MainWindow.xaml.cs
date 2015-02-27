@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MedQ
+namespace A288
 {
     /// <summary>
     /// Entry Point of the App.
@@ -35,7 +35,7 @@ namespace MedQ
         /// </summary>
         /// \note The MainWindow form is hidden while the other form is displayed.
         /// <param name="sender">The object that raised the event (in our case the create Button).</param>
-        /// <param name="e"></param>
+        /// <param name="e">The event args.</param>
         private void create_Click(object sender, RoutedEventArgs e)
         {
             Create f = new Create();
@@ -53,13 +53,13 @@ namespace MedQ
                 this.Show();
             }
             
-        }
+        }//create_Click
 
         /// <summary>
         /// Creates a new Practice object and displays the form for atempting a quiz.
         /// </summary>
         /// <param name="sender">The object that raised the event (in our case the start Button).</param>
-        /// <param name="e"></param>
+        /// <param name="e">The event args.</param>
         private void start_Click(object sender, RoutedEventArgs e)
         {
             Practice f = new Practice();
