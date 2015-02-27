@@ -53,10 +53,12 @@ namespace A288
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
         /// <summary>
-        /// 
+        /// Triggers after the window was initialized. Loads a quiz from an XML file.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// Opens a OpenFileDialog and selects a quiz. Then calls initialQuestionLoad(). <br/>
+        /// Finally starts the timer and loads the first question.
+        /// <param name="sender">The Practice window.</param>
+        /// <param name="e">The event args.</param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -88,10 +90,10 @@ namespace A288
                 MessageBox.Show("You need to open a test (.xml file)!", "Fatal error", MessageBoxButton.OK, MessageBoxImage.Stop);
                 this.Close();
             }
-        }
+        }//Window_Loaded
 
         /// <summary>
-        /// 
+        /// The timer Event Hadler. 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
