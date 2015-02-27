@@ -1,7 +1,7 @@
-﻿<Window x:Name="MedQ" x:Class="A288.MainWindow"
+﻿<Window x:Name="A288" x:Class="A288.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MedQ" Height="500" Width="400" MinWidth="400" MinHeight="500" FontFamily="Rockwell" FontSize="16" ResizeMode="NoResize" Icon="Resources/mq_ico.ico">
+        Title="Project A288" Height="500" Width="400" MinWidth="400" MinHeight="500" FontFamily="Rockwell" FontSize="16" ResizeMode="NoResize" Icon="Resources/mq_ico.ico">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="Resources/m_bg.png"/>

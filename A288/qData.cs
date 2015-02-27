@@ -487,4 +487,4 @@ namespace A288
             }
         }//Evaluate
     }// qDataDouble
-}// MedQ
+}// A288

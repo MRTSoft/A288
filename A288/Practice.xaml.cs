@@ -41,7 +41,7 @@ namespace A288
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         /// <summary>
-        /// 
+        /// The default constructor. It creates and display a new Practice WPF.
         /// </summary>
         public Practice()
         {
