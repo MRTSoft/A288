@@ -69,10 +69,11 @@ namespace MedQ
 
 
         /// <summary>
-        /// 
+        /// Displays an OpenFileDialog and creates a quiz from an existing XML file.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// \note None of the parameters is used.
+        /// <param name="sender">The bLoadXml Button.</param>
+        /// <param name="e">The Click events args</param>
         private void bLoad_Xml(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -92,13 +93,14 @@ namespace MedQ
                 tabWrapper.SelectedIndex++;
             }//Else do nothing
            
-        }
+        }//bLoad_Xml
 
         /// <summary>
-        /// 
+        /// Displays an OpenFileDialog and creates a quiz from an existing TXT file.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// \note None of the parameters is used.
+        /// <param name="sender">The bLoadTxt Button</param>
+        /// <param name="e">The Click event args.</param>
         private void bLoad_Txt(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -119,10 +121,11 @@ namespace MedQ
         }
 
         /// <summary>
-        /// 
+        /// Advances to the next tab.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// \note None of the parameters is used.
+        /// <param name="sender">The button that was clicked.</param>
+        /// <param name="e">The event args.</param>
         private void bNext_Tab(object sender, RoutedEventArgs e)
         {
             tabWrapper.SelectedIndex = tabWrapper.SelectedIndex + 1;
@@ -133,33 +136,36 @@ namespace MedQ
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         /// <summary>
-        /// 
+        /// Trigers the loading of a specific question (selected as the new index).
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        /// \note None of the parameters is used.
+        /// <param name="sender">The cbNumber ComboBox.</param>
+        /// <param name="e">The event args.</param>
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             saveCurQ(true);
             int curent = cbNumber.SelectedIndex;
             loadQuestion(curent + 1);
-        }
+        }//ComboBox_SelectionChanged
 
         /// <summary>
-        /// 
+        /// Advances to the next question.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// \note None of the parameters is used.
+        /// <param name="sender">The bQNext Button</param>
+        /// <param name="e">The event args.</param>
         private void bQNext_Click(object sender, RoutedEventArgs e)
         {
             if (saveCurQ())
                 loadQuestion(curentQ + 1);
-        }
+        }//bQNext_Click
 
         /// <summary>
-        /// 
+        /// Goes back to the previous question.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// \note None of the parameters is used.
+        /// <param name="sender">The bQPrev Button.</param>
+        /// <param name="e">The event args.</param>
         private void bQPrev_Click(object sender, RoutedEventArgs e)
         {
             string er = "";
@@ -338,7 +344,7 @@ namespace MedQ
         /// </summary>
         private void refreshComboList()
         {
-            cbNumber.SelectionChanged -= ComboBox_SelectionChanged;
+            cbNumber.SelectionChanged -= comboBox_SelectionChanged;
             cbNumber.Items.Clear();
             for (int i = 0; i < QUIZZ.Count; i++)
             {
@@ -350,7 +356,7 @@ namespace MedQ
                 cbNumber.Items.Add(lbl);
             }
             cbNumber.SelectedIndex = curentQ - 1;
-            cbNumber.SelectionChanged += ComboBox_SelectionChanged;
+            cbNumber.SelectionChanged += comboBox_SelectionChanged;
         }
 
         /// <summary>
