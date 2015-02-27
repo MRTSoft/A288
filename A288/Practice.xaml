@@ -1,0 +1,53 @@
+﻿<Window x:Class="MedQ.Practice"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Practice" Height="610" Width="400" FontFamily="Times New Roman" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Loaded="Window_Loaded" Icon="Resources/mq_ico.ico" SizeToContent="Width" WindowStartupLocation="CenterScreen" MinWidth="400" MinHeight="610" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+    <Grid ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+        <Grid.Background>
+            <ImageBrush ImageSource="Resources/test_bg.png"/>
+        </Grid.Background>
+        <Label x:Name="lHeader" Height="50" Width="258" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="#BC009BAA" Margin="9,16,0,0" Foreground="Black">Question 0 of 0</Label>
+        <Label x:Name="lSubmit" Height="50" Width="100" VerticalAlignment="Top" Background="Red" Foreground="White" Margin="0,17,9,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MouseEnter="lSubmit_MouseEnter" MouseLeave="lSubmit_MouseLeave" MouseDown="lSubmit_Click" HorizontalAlignment="Right">
+            SUBMIT&#160;
+        </Label>
+        <TextBox x:Name="tbQ" Margin="9,82,9,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="TextBox" ScrollViewer.CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MinWidth="347" MinHeight="144" MaxWidth="400">
+            <TextBox.Background>
+                <SolidColorBrush Color="White" Opacity="0.7"/>
+            </TextBox.Background>
+        </TextBox>
+        <Button x:Name="bPrev" Click="bPrev_Click" Content="&lt;" Width="100" Margin="9,0,0,9" HorizontalAlignment="Left" Height="50" VerticalAlignment="Bottom">
+            <Button.Background>
+                <SolidColorBrush Color="#FFDDDDDD" Opacity="0.8"/>
+            </Button.Background>
+        </Button>
+        <Label x:Name="lTime" Width="100" Height="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="143,0,149,9" Background="#7F3BAA42">Unlimited</Label>
+        <!--
+        <Button x:Name="bTest" Content="Unlimited" Width="100" Height="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="147,499,147,9" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button.Background>
+                <SolidColorBrush Color="#FFDDDDDD" Opacity="0.8"/>
+            </Button.Background>
+        </Button>
+        -->
+        <Button x:Name="bNext" Click="bNext_Click" Content="&gt;"  Width="100" Height="50" Margin="0,0,9,9" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <Button.Background>
+                <SolidColorBrush Color="#FFDDDDDD" Opacity="0.8"/>
+            </Button.Background>
+        </Button>
+
+        <Label x:Name="a1" Margin="9,0,9,289" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="genericClick" Background="#7FFFFFFF" MinHeight="50" MinWidth="374" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Content="The first supported answer." Height="50" VerticalAlignment="Bottom"/>
+        <Label x:Name="a2" Margin="9,0,9,234" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="genericClick" Background="#7FFFFFFF" MinWidth="374" MinHeight="50" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Content="The second supported answer." Height="50" VerticalAlignment="Bottom"/>
+        <Label x:Name="a3" Margin="9,0,9,179" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="genericClick" Background="#7FFFFFFF" MinWidth="374" MinHeight="50" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Content="The third supported answer." Height="50" VerticalAlignment="Bottom"/>
+        <Label x:Name="a4" Margin="9,0,9,124" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="genericClick" Background="#7FFFFFFF" MinWidth="374" MinHeight="50" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Content="The forth supported answer." Height="50" VerticalAlignment="Bottom"/>
+        <Label x:Name="a5" Margin="9,0,9,69" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="genericClick" Background="#7FFFFFFF" MinWidth="374" MinHeight="50" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Content="The fifth supported answer." Height="50" VerticalAlignment="Bottom"/>
+
+        <!-- DEPRECATED BUTTONS
+        <Button x:Name="cb1" Content="A1" HorizontalAlignment="Left" Height="51" Margin="10,151,0,0" VerticalAlignment="Top" Width="372" Background="White" Click="cb1_Click" ToolTip="Mark the first answer as TRUE"/>
+        <Button x:Name="cb2" Content="A2" HorizontalAlignment="Left" Height="51" Margin="10,207,0,0" VerticalAlignment="Top" Width="372" Background="#FF3EFF3E" Click="cb1_Click"/>
+        <Button x:Name="cb3" Content="A3" HorizontalAlignment="Left" Height="51" Margin="10,263,0,0" VerticalAlignment="Top" Width="372" Background="#FFA09E9E" Click="cb1_Click"/>
+        <Button x:Name="cb4" Content="A4" HorizontalAlignment="Left" Height="51" Margin="10,319,0,0" VerticalAlignment="Top" Width="372" Click="cb1_Click"/>
+        <Button x:Name="cb5" Content="A5" HorizontalAlignment="Left" Height="51" Margin="10,375,0,0" VerticalAlignment="Top" Width="372" Click="cb1_Click"/>
+        
+        END OF DEPRECATED BUTTONS
+        -->
+    </Grid>
+</Window>

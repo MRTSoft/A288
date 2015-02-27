@@ -1,0 +1,24 @@
+﻿<Window x:Name="MedQ" x:Class="MedQ.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MedQ" Height="500" Width="400" MinWidth="400" MinHeight="500" FontFamily="Rockwell" FontSize="16" ResizeMode="NoResize" Icon="Resources/mq_ico.ico">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Resources/m_bg.png"/>
+        </Grid.Background>
+        <Button x:Name="create" Height="64" Margin="35,89,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="314" Click="create_Click" Background="{x:Null}" BorderBrush="{x:Null}">
+            <Rectangle HorizontalAlignment="Left" Height="64" VerticalAlignment="Top" Width="314">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Resources/main_create.png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Button>
+        <Button x:Name="start" HorizontalAlignment="Left" Height="64" Margin="35,182,0,0" VerticalAlignment="Top" Width="315" Click="start_Click" Background="{x:Null}" BorderBrush="{x:Null}">
+            <Rectangle HorizontalAlignment="Left" Height="64" VerticalAlignment="Top" Width="314">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Resources/main_start.png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Button>
+    </Grid>
+</Window>
