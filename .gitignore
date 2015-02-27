@@ -119,7 +119,9 @@ DocProject/Help/*.hhk
 DocProject/Help/*.hhp
 DocProject/Help/Html2
 DocProject/Help/html
-docs/*.*
+
+# Remove Doxygen output
+A288/docs
 
 # Click-Once directory
 publish/
