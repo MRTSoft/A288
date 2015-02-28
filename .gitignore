@@ -124,6 +124,9 @@ DocProject/Help/html
 A288/docs/html
 A288/docs
 
+# Remove RAW image files
+A288/Resources/RAW
+
 # Click-Once directory
 publish/
 

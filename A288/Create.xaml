@@ -20,16 +20,16 @@
             <TabItem Header="Quiz Start" BorderBrush="#FF010E19">
                 <Grid x:Name="gTab0">
                     <Grid.Background>
-                        <ImageBrush ImageSource="Resources/create_bg.png"/>
+                        <ImageBrush ImageSource="Resources/t1_bg.png"/>
                     </Grid.Background>
                     <!-- Controls for loading the questions -->
-                    <Button x:Name="bNew" Height="50" Width="300" Margin="269,157,269,298" Click="bNext_Tab">
+                    <Button x:Name="bNew" Height="50" Width="300" Margin="269,157,269,298" Click="bNext_Tab" Background="#BFFFFFFF" BorderBrush="{x:Null}">
                         Create one-by-one
                     </Button>
-                    <Button x:Name="bLoadXml" Height="50" Width="300" Margin="269,212,269,243" Click="bLoad_Xml">
+                    <Button x:Name="bLoadXml" Height="50" Width="300" Margin="269,212,269,243" Click="bLoad_Xml" Background="#BFFFFFFF" BorderBrush="{x:Null}">
                         Load From XML file
                     </Button>
-                    <Button x:Name="bLoadTxt" Height="50" Width="300" Margin="269,267,269,188" Click="bLoad_Txt">
+                    <Button x:Name="bLoadTxt" Height="50" Width="300" Margin="269,267,269,188" Click="bLoad_Txt" BorderBrush="{x:Null}" Background="#BFFFFFFF">
                         Load From TXT file
                     </Button>
                 </Grid>
@@ -37,10 +37,7 @@
             <TabItem Header="Question Control">
                 <Grid x:Name="gTab1">
                     <Grid.Background>
-                        <RadialGradientBrush>
-                            <GradientStop Color="#FF057A1A"/>
-                            <GradientStop Color="#FF054911" Offset="1"/>
-                        </RadialGradientBrush>
+                        <ImageBrush ImageSource="Resources/t2_bg.png"/>
                     </Grid.Background>
                     <!-- Controls for entering questions -->
                     <TextBox x:Name="tbText" HorizontalAlignment="Left" Height="126" Margin="10,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="842">
@@ -48,10 +45,16 @@
                             <SolidColorBrush Color="White" Opacity="0.8"/>
                         </TextBox.Background>
                     </TextBox>
-                    <ComboBox x:Name="cbNumber" Margin="754,18,25,0" VerticalAlignment="Top" Width="79" SelectionChanged="comboBox_SelectionChanged" HorizontalAlignment="Right" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="24">
+                    <ComboBox x:Name="cbNumber" Margin="754,18,25,0" VerticalAlignment="Top" Width="79" SelectionChanged="comboBox_SelectionChanged" HorizontalAlignment="Right" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="24" BorderBrush="{x:Null}">
+                        <ComboBox.Background>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="#BFF0F0F0" Offset="0"/>
+                                <GradientStop Color="#BFE5E5E5" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ComboBox.Background>
                         <Label>1</Label>
                     </ComboBox>
-                    <Label x:Name="lqNr" Content="Question 1 of 1" FontSize="28" Width="300" Height="50" Margin="279,13,279,462"/>
+                    <Label x:Name="lqNr" Content="Question 1 of 1" FontSize="28" Width="300" Height="50" Margin="279,13,279,462" Background="#99FFFFFF"/>
                     <TextBox x:Name="tbA1" HorizontalAlignment="Left" Height="35" Margin="44,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="720" VerticalContentAlignment="Center">
                         <TextBox.Background>
                             <SolidColorBrush Color="White" Opacity="0.8"/>
@@ -97,8 +100,8 @@
                             <SolidColorBrush Color="#FFDDDDDD" Opacity="0.7"/>
                         </Button.Background>
                     </Button>
-                    <Button x:Name="bDelete" Content="Delete" Height="50" Width="100" Click="bDelete_Click" Margin="503,459,255,18"></Button>
-                    <Button x:Name="bNextTab" Width="200" Content="Next Page" Click="bNext_Tab" Margin="633,457,25,16"/>
+                    <Button x:Name="bDelete" Content="Delete" Height="50" Width="100" Click="bDelete_Click" Margin="503,459,255,18" BorderBrush="{x:Null}" Background="#BFFFFFFF"></Button>
+                    <Button x:Name="bNextTab" Width="200" Content="Next Page" Click="bNext_Tab" Margin="633,457,25,16" BorderBrush="{x:Null}" Background="#BFFFFFFF"/>
                 </Grid>
 
             </TabItem>
@@ -106,24 +109,21 @@
                 <Grid x:Name="gTab2">
 
                     <Grid.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#FF005F12"/>
-                            <GradientStop Color="#FF054911" Offset="1"/>
-                        </LinearGradientBrush>
+                        <ImageBrush ImageSource="Resources/t3_bg.png"/>
                     </Grid.Background>
 
                     <!-- Control for saving the Quiz and setting it's properties-->
 
-                    <Button Width="300" Height="50" Click="bSave_Xml" Margin="279,354,279,121">
+                    <Button Width="300" Height="50" Click="bSave_Xml" Margin="279,354,279,121" Background="#CCFFFFFF">
                         Save as XML file
                     </Button>
-                    <Button Width="300" Height="50" Click="bSave_Txt" Margin="279,417,279,58">
+                    <Button Width="300" Height="50" Click="bSave_Txt" Margin="279,417,279,58" Background="#CCFFFFFF">
                         Save as TXT file
                     </Button>
-                    <TextBox TextChanged="tBoxNumberTextChanged" x:Name="nTime" Width="300" Height="50" Text="Time (in minutes)" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Margin="279,248,279,227" ToolTip="The time (in minutes) for the quiz."/>
-                    <TextBox TextChanged="tBoxNumberTextChanged" x:Name="nQuestions" Width="300" Height="50" Text="Use -- of -- questions." TextAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Margin="279,87,279,388" ToolTip="Only some of the questions will be used when making a quiz."/>
-                    <Label Content="Used question for a quiz:" Width="300" Height="50" FontSize="26" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="279,32,279,443"/>
-                    <Label Content="Quiz duration (in minutes):" Width="300" Height="50" FontSize="26" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="279,192,279,283" />
+                    <TextBox TextChanged="tBoxNumberTextChanged" x:Name="nTime" Width="300" Height="50" Text="Time (in minutes)" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Margin="279,248,279,227" ToolTip="The time (in minutes) for the quiz." Background="#CCFFFFFF"/>
+                    <TextBox TextChanged="tBoxNumberTextChanged" x:Name="nQuestions" Width="300" Height="50" Text="Use -- of -- questions." TextAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Margin="279,87,279,388" ToolTip="Only some of the questions will be used when making a quiz." Background="#CCFFFFFF"/>
+                    <Label Content="Used question for a quiz:" Width="300" Height="50" FontSize="26" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="279,32,279,443" Background="#99C1FD9E"/>
+                    <Label Content="Quiz duration (in minutes):" Width="300" Height="50" FontSize="26" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="279,192,279,283" Background="#99C1FD9E" />
 
 
                 </Grid>
