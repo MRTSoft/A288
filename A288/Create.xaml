@@ -112,7 +112,7 @@
                         </LinearGradientBrush>
                     </Grid.Background>
 
-                    <!-- Control for saving the Quizz and setting it's properties-->
+                    <!-- Control for saving the Quiz and setting it's properties-->
 
                     <Button Width="300" Height="50" Click="bSave_Xml" Margin="279,354,279,121">
                         Save as XML file

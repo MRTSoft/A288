@@ -95,13 +95,15 @@ namespace A288
         /// <summary>
         /// The timer Event Hadler. 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// Displays the remaining time and subtracs a second from the remaining time. <br/>
+        /// When the remaining time is 0 the function calls endTheQuiz()
+        /// <param name="sender">The timer object.</param>
+        /// <param name="e">The event args.</param>
         private void timerTick(Object sender, EventArgs e)
         {
             lTime.Content = remainingTime.Hours.ToString("00") + ":" + remainingTime.Minutes.ToString("00") + ":" + remainingTime.Seconds.ToString("00");
             remainingTime = remainingTime.Subtract(new TimeSpan(0, 0, 1));
-            if (remainingTime.TotalSeconds < 0.2d) endTheQuizz();
+            if (remainingTime.TotalSeconds < 0.2d) endTheQuiz();
         }
 
         /// <summary>
@@ -177,7 +179,7 @@ namespace A288
         {
             MessageBoxResult dr = MessageBox.Show("Are you sure you want to submit the questions? \nThis will end the current quiz.", "Are you sure?", MessageBoxButton.OKCancel);
             if (dr == MessageBoxResult.Cancel) return;
-            endTheQuizz();
+            endTheQuiz();
         }
 
         /// <summary>
@@ -257,7 +259,7 @@ namespace A288
             if (nr > QUIZ.Count)
             {
                 MessageBoxResult r = MessageBox.Show("Do you wish to submit your quiz?", "Last question reached", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
-                if (r == MessageBoxResult.Yes) endTheQuizz();
+                if (r == MessageBoxResult.Yes) endTheQuiz();
                 return;
             }
             
@@ -334,9 +336,9 @@ namespace A288
         }//setButtonState
             
         /// <summary>
-        /// End the quizz by evaluating the questions, calculation the score and un-binding the answer buttons
+        /// End the quiz by evaluating the questions, calculation the score and un-binding the answer buttons
         /// </summary>
-        private void endTheQuizz()
+        private void endTheQuiz()
         {
             mainTimer.Stop();// First we stop the timer.
             TimeSpan completed = new TimeSpan(0, qDataDouble.MaxTime, 0);//We display the finished time
@@ -359,6 +361,6 @@ namespace A288
             }
             lStats_Click(lSubmit, new MouseButtonEventArgs(Mouse.PrimaryDevice ,0,MouseButton.Left, Stylus.CurrentStylusDevice));
             loadQuestion(cQ);
-        }//endTheQuizz
+        }//endTheQuiz
     }
 }

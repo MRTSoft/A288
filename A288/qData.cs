@@ -75,10 +75,10 @@ namespace A288
         }
 
         /// <summary>
-        /// The maximum time alocated for the quizz.
+        /// The maximum time alocated for the quiz.
         /// </summary>
         ///
-        ///  Allows the user to set a maximum time for the quizz.
+        ///  Allows the user to set a maximum time for the quiz.
         /// \note For unlimited time use 0.
         static public int MaxTime
         {
@@ -274,11 +274,11 @@ namespace A288
         /// /note if the line begins with ' #' a space followed by a # the answer is considered false.
         /// The false answers begin with a normal character.
         /// /note The # in front of correct answers is not displayed.
-        /// <param name="QUIZZ">The List where the questions will be saved</param>
+        /// <param name="QUIZ">The List where the questions will be saved</param>
         /// <param name="file"></param>
-        public static void TxtToObjects(ref List<qData> QUIZZ, string file)
+        public static void TxtToObjects(ref List<qData> QUIZ, string file)
         {
-            QUIZZ.Clear();//remove all items
+            QUIZ.Clear();//remove all items
             //TODO add suport for adding questions - DONE; Just load more tests
 
             StreamReader tr = new StreamReader(file);                        
@@ -301,7 +301,7 @@ namespace A288
                     a4 = v4.Contains("#"); if (a4) { v4 = v4.Substring(1); }
                     a5 = v5.Contains("#"); if (a5) { v5 = v5.Substring(1); }
                     qData q = new qData(text, v1, a1, v2, a2, v3, a3, v4, a4, v5, a5);
-                    if (q.Validate(ref er) == true) QUIZZ.Add(q);
+                    if (q.Validate(ref er) == true) QUIZ.Add(q);
                 }
             }// end try block
             catch
@@ -318,14 +318,14 @@ namespace A288
         /// <summary>
         /// Writes the questions to an .txt file using the same syntax as readFile
         /// </summary>
-        /// <param name="Quizz">The List of qData objects to be written in the file.</param>
+        /// <param name="Quiz">The List of qData objects to be written in the file.</param>
         /// <param name="file">The file name with full path.</param>
-        public static void TxtToFile(List<qData> Quizz, string file)
+        public static void TxtToFile(List<qData> Quiz, string file)
         {
             StreamWriter sr = new StreamWriter(file);
             try
             {
-                foreach (qData q in Quizz)
+                foreach (qData q in Quiz)
                 {
                     sr.Write(q.ToString());
                 }

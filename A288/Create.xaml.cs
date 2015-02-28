@@ -20,7 +20,7 @@ using System.IO;
 
 namespace A288
 {
-    //! \brief Class that handles interaction logic for %Create Quizz window
+    //! \brief Class that handles interaction logic for %Create Quiz window
     //! 
     //! This class contains all the function called by the controls on the 'Create' window. 
     //! To keep thinks clean it also contains generic functions for performing operations like loading or saving questions.
@@ -35,7 +35,7 @@ namespace A288
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
         private List<qData> QUIZ;//!< Contains the questions.
-        private int curentQ;//!< The curent question that is being edited. \note The first question is refered as 1 but is stored in \ref QUIZZ[0]
+        private int curentQ;//!< The curent question that is being edited. \note The first question is refered as 1 but is stored in \ref QUIZ[0]
 
 
 
@@ -46,7 +46,7 @@ namespace A288
 
         //! \brief The default constructor. 
         //! Default constructor that initializes the WPF window's content.
-        //! It initialises the components and creates a blank quizz.
+        //! It initialises the components and creates a blank quiz.
         public Create()
         {
             InitializeComponent();
