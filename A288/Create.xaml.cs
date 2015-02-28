@@ -171,6 +171,7 @@ namespace A288
         /// <param name="e">The event args.</param>
         private void bQPrev_Click(object sender, RoutedEventArgs e)
         {
+            if (currentQ == 1) return;
             string er = "";
             if (QUIZ[currentQ - 1].Validate(ref er) != true)
             {
@@ -383,6 +384,9 @@ namespace A288
             }
             QUIZ.Clear();
             QUIZ.AddRange(save);
+            if (currentQ > QUIZ.Count) currentQ = QUIZ.Count;
+            if (currentQ == 0) currentQ = 1;
+            loadQuestion(currentQ);
             refreshComboList();
         }
 
@@ -415,6 +419,11 @@ namespace A288
                 if (!supressError) MessageBox.Show(er);
                 return false;
             }
+        }
+
+        private void TabItem_GotFocus(object sender, RoutedEventArgs e)
+        {
+            removeInvalid();
         }//saveCurQ        
     }//end class
 }//end namespace

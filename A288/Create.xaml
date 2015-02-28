@@ -17,7 +17,7 @@
         -->
 
         <TabControl Opacity="1.0" x:Name="tabWrapper" Background="#FF2C2C2C" BorderBrush="#FF0F0D0D">
-            <TabItem Header="Quiz Start" Background="#FF003764" BorderBrush="#FF010E19">
+            <TabItem Header="Quiz Start" BorderBrush="#FF010E19">
                 <Grid x:Name="gTab0">
                     <Grid.Background>
                         <ImageBrush ImageSource="Resources/create_bg.png"/>
@@ -87,7 +87,7 @@
                     </TextBox>
                     <Label Content="E)" HorizontalAlignment="Left" Margin="10,403,0,0" VerticalAlignment="Top" FontSize="20"/>
                     <CheckBox x:Name="cb5" Content="True?" HorizontalAlignment="Left" Height="28" Margin="769,410,0,0" VerticalAlignment="Top" Width="83" Background="White" ToolTip="Check to mark the answer as TRUE" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" FontSize="20"/>
-                    <Button x:Name="bQPrev" Content="&lt;" HorizontalAlignment="Left" Height="52" Margin="44,457,0,0" VerticalAlignment="Top" Width="199" Click="bQPrev_Click" Visibility="Visible">
+                    <Button x:Name="bQPrev" Content="&lt;" HorizontalAlignment="Left" Height="52" Margin="44,457,0,0" VerticalAlignment="Top" Width="199" Click="bQPrev_Click" Visibility="Hidden">
                         <Button.Background>
                             <SolidColorBrush Color="#FFDDDDDD" Opacity="0.7"/>
                         </Button.Background>
@@ -102,7 +102,7 @@
                 </Grid>
 
             </TabItem>
-            <TabItem Header="Quiz Options">
+            <TabItem Header="Quiz Options" GotFocus="TabItem_GotFocus">
                 <Grid x:Name="gTab2">
 
                     <Grid.Background>

@@ -8,9 +8,16 @@ using System.Windows;
 
 namespace A288
 {
-    /*
+
     public partial class App : Application
     {
+        [STAThread]
+        public static void Main()
+        {
+            MainWindow m = new MainWindow();
+            m.ShowDialog();
+            return;
+        }
     }
-     */
+    
 }
