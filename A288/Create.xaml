@@ -1,7 +1,7 @@
 ﻿<Window x:Class="A288.Create"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Create" Height="590" Width="870" FontSize="18" FontFamily="Times New Roman" ResizeMode="NoResize" Icon="Resources/mq_ico.ico" ShowInTaskbar="False" Background="#FF2C2C2C" WindowStartupLocation="CenterScreen">
+        Title="Create" Height="590" Width="870" FontSize="18" FontFamily="Times New Roman" ResizeMode="NoResize" Icon="Resources/favicon.ico" ShowInTaskbar="False" Background="#FF2C2C2C" WindowStartupLocation="CenterScreen">
     <Grid Background="#FF2C2C2C">
         <!-- 
         <Button x:Name="bSaveX" Content="Save XML" HorizontalAlignment="Left" Height="52" Margin="443,465,0,0" VerticalAlignment="Top" Width="199" Click="bSave_Xml">

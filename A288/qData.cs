@@ -14,7 +14,7 @@ using System.IO;
 namespace A288
 {
     /// <summary>
-    /// Provides the structure for organizing the questions and support for serializing and deserializing data.
+    /// Provides the structure for organizing the questions and support for serializing and de-serializing data.
     /// </summary>
     /// Also the class serves as a base for qWrapper and qDataDouble classes.
     public class qData 
@@ -23,10 +23,10 @@ namespace A288
         //                                          M E M B E R S
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
         private string text = ""; ///< The text of the question.
-        private string[] vars = new string[5]; ///< The posible answers.
+        private string[] vars = new string[5]; ///< The possible answers.
         private bool[] ans = new bool[5]; ///< Marks if a answer is correct.
         static private int maxTime;//< The time allowed for the quiz in minutes (0 for unlimited time).
-        static private int usableQuestions;//< The number of questions to be used (0 te use all of them).
+        static private int usableQuestions;//< The number of questions to be used (0 to use all of them).
 
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
         //                                     P R O P E R T I E S
@@ -59,7 +59,7 @@ namespace A288
         }
 
         /// <summary>
-        /// Array containing the posible answers to the question.
+        /// Array containing the possible answers to the question.
         /// </summary>
         [XmlArray("Variants")]
         public string[] Vars
@@ -75,7 +75,7 @@ namespace A288
         }
 
         /// <summary>
-        /// The maximum time alocated for the quiz.
+        /// The maximum time allocated for the quiz.
         /// </summary>
         ///
         ///  Allows the user to set a maximum time for the quiz.
@@ -103,7 +103,7 @@ namespace A288
 
         /// \brief The default constructor
         /// 
-        /// Creates an empty qData object. It should be used only to create placeholders
+        /// Creates an empty qData object. It should be used only to create place-holders
         public qData()
         {
             //Default constructor. Do nothing.
@@ -126,7 +126,7 @@ namespace A288
         }
 
         /// <summary>
-        /// Creates an qData object with all the fields filled in. The fields are transmited as variables.
+        /// Creates an qData object with all the fields filled in. The fields are transmitted as variables.
         /// </summary>
         /// <param name="t">The text of the question.</param>
         /// <param name="v1">The first answer.</param>
@@ -170,6 +170,7 @@ namespace A288
         /// The Question is considered valid if:
         /// 1. The text isn't empty;
         /// 2. A least one of the answers is true.
+		///
         /// <param name="error">An error string returned if the question is invalid.</param>
         /// <returns>The valid state of the question.</returns>
         public bool Validate(ref string error)
@@ -266,21 +267,19 @@ namespace A288
         /// Question 2 text<br/>
         /// ...
         /// 
-        /// \note TXT files don't support the MaxTime and UsableQuestions properties.
-        /// 
-        /// \note Between questions should't be empty lines
-        /// The quuestion text can span on a single line
-        /// The corect answer/answers begin with an # and ends at the end of the line.
-        /// /note if the line begins with ' #' a space followed by a # the answer is considered false.
+        /// The question text can span on a single line
+        /// The correct answer/answers begin with an # and ends at the end of the line.
         /// The false answers begin with a normal character.
-        /// /note The # in front of correct answers is not displayed.
+        /// 
+        /// \note If the line begins with ' #' a space followed by a # the answer is considered false.
+        /// \note TXT files don't support the MaxTime and UsableQuestions properties.
+        /// \note The # in front of correct answers is not displayed.
+        /// 
         /// <param name="QUIZ">The List where the questions will be saved</param>
-        /// <param name="file"></param>
+        /// <param name="file">The file name with full path.</param>
         public static void TxtToObjects(ref List<qData> QUIZ, string file)
         {
             QUIZ.Clear();//remove all items
-            //TODO add suport for adding questions - DONE; Just load more tests
-
             StreamReader tr = new StreamReader(file);                        
             string text, v1, v2, v3, v4, v5;
             string er = "";
@@ -349,7 +348,7 @@ namespace A288
 
 
     /// <summary>
-    /// Wrapper class used to serialize a quiz. Aditional quiz metadata can be added via this class
+    /// Wrapper class used to serialize a quiz. Additional quiz meta-data can be added via this class
     /// </summary>
     public class qWrapper
     {
@@ -364,8 +363,8 @@ namespace A288
         /// <summary>
         /// The time (in minutes) used to solve all the used questions.
         /// </summary>
-        ///  The time is expressed in minutes and it's a integer.
-        ///  /note If this is 0 then the quiz will not be timed.
+        /// The time is expressed in minutes and it's a integer.
+        /// \note If this is 0 then the quiz will not be timed.
         [XmlElement("MaxTime")]
         public int MaxTime
         { get; set; }
@@ -373,7 +372,7 @@ namespace A288
         /// <summary>
         /// The number of questions used in a quiz.
         /// </summary>
-        /// Note that this must be smaller than the total number of questions.
+        /// Please be aware that this must be smaller than the total number of questions.
         /// \note If this is set to 0 then all the questions will be used.
         [XmlElement("UsedQuestions")]
         public int UsedQuestions
@@ -423,15 +422,15 @@ namespace A288
             get { return this.right; }
         }
 
-        public bool[] UserAnswers//< Remembers the answers chosed by the user
+        public bool[] UserAnswers//< Remembers the answers chosen by the user
         {
             get; set;
         }//UserAnswers
        
         /// <summary>
-        /// Default constructor. reates a qDataDouble object.
+        /// Default constructor. Creates a qDataDouble object.
         /// </summary>
-        /// \note By default we asume that the user has not answered correctly
+        /// \note By default we assume that the user has not answered correctly
         public qDataDouble()
         {
             this.UserAnswers = new bool[] { false, false, false, false, false };
@@ -453,7 +452,7 @@ namespace A288
         /// <summary>
         /// Shuffle the answers of a question.
         /// </summary>
-        /// \note The UserAnswers is keep in sync.
+        /// \note The UserAnswers are kept in sync.
         public void shuffleAnswers()
         {
             int rSeed = DateTime.Now.Millisecond;

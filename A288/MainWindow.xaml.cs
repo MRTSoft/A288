@@ -34,6 +34,7 @@ namespace A288
         /// Creates a new Create object and displays the form for creating a new quiz.
         /// </summary>
         /// \note The MainWindow form is hidden while the other form is displayed.
+        /// 
         /// <param name="sender">The object that raised the event (in our case the create Button).</param>
         /// <param name="e">The event args.</param>
         private void create_Click(object sender, RoutedEventArgs e)
@@ -56,7 +57,7 @@ namespace A288
         }//create_Click
 
         /// <summary>
-        /// Creates a new Practice object and displays the form for atempting a quiz.
+        /// Creates a new Practice object and displays the form for attempting a quiz.
         /// </summary>
         /// <param name="sender">The object that raised the event (in our case the start Button).</param>
         /// <param name="e">The event args.</param>
@@ -70,7 +71,7 @@ namespace A288
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error!" + ex.Message, "An error occured!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error!" + ex.Message, "An error occurred!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {

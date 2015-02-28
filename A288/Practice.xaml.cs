@@ -23,8 +23,6 @@ namespace A288
     //! To keep thinks clean it also contains generic functions for performing operations like loading or saving questions.
     public partial class Practice : Window
     {
-        //TODO Create sections for the methods
-        //TODO Write documentation for this
         //TODO [OPTIONAL] Add graphical elements
 
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -93,9 +91,9 @@ namespace A288
         }//Window_Loaded
 
         /// <summary>
-        /// The timer Event Hadler. 
+        /// The timer event handler. 
         /// </summary>
-        /// Displays the remaining time and subtracs a second from the remaining time. <br/>
+        /// Displays the remaining time and subtracts a second from the remaining time. <br/>
         /// When the remaining time is 0 the function calls endTheQuiz()
         /// <param name="sender">The timer object.</param>
         /// <param name="e">The event args.</param>
@@ -107,10 +105,10 @@ namespace A288
         }
 
         /// <summary>
-        /// 
+        /// This function is used when the user clicks on an answer.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The button clicked (that is actually just a Label).</param>
+        /// <param name="e">The event args.</param>
         private void genericClick(object sender, MouseButtonEventArgs e)
         {
             Label l = sender as Label;
@@ -126,10 +124,10 @@ namespace A288
         }
 
         /// <summary>
-        /// 
+        /// This function is called when the user clicks on an answer AFTER the answers were submitted.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The button clicked (that is actually just a Label).</param>
+        /// <param name="e">The event args.</param>
         private void genericClickEnded(object sender, MouseButtonEventArgs e)
         {
             if (QUIZ[cQ - 1].Right) MessageBox.Show("You have answered correctly at this question,", "Correct", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -137,44 +135,45 @@ namespace A288
         }
 
         /// <summary>
-        /// 
+        /// Advances to the next question by calling loadQuestion().
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        ///
+        /// <param name="sender">The button that raised the event.</param>
+        /// <param name="e">The event args.</param>
         private void bNext_Click(object sender, RoutedEventArgs e)
         {
             loadQuestion(cQ + 1);
         }
 
         /// <summary>
-        /// 
+        /// Goes back to the previous question by calling loadQuestion().
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The button that raised the event.</param>
+        /// <param name="e">The event args.</param>
         private void bPrev_Click(object sender, RoutedEventArgs e)
         {
             loadQuestion(cQ - 1);
         }
 
         /// <summary>
-        /// 
+        /// Changes the background of the SUBMIT button when the mouse enters the control.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The button that raised the event.</param>
+        /// <param name="e">The event args.</param>
         private void lSubmit_MouseEnter(object sender, MouseEventArgs e) { lSubmit.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0xE6, 0x3C, 0x00)); } /* #FF E6 3C 00 */
-        
+
         /// <summary>
-        /// 
+        /// Changes the background of the SUBMIT button when the mouse leaves the control.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The button that raised the event.</param>
+        /// <param name="e">The event args.</param>
         private void lSubmit_MouseLeave(object sender, MouseEventArgs e) { lSubmit.Background = new SolidColorBrush(Colors.Red); }
 
         /// <summary>
-        /// 
+        /// Submits the questions by calling endTheQuizz().
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The button that raised the event.</param>
+        /// <param name="e">The event args.</param>
         private void lSubmit_Click(object sender, MouseButtonEventArgs e)
         {
             MessageBoxResult dr = MessageBox.Show("Are you sure you want to submit the questions? \nThis will end the current quiz.", "Are you sure?", MessageBoxButton.OKCancel);
@@ -183,10 +182,10 @@ namespace A288
         }
 
         /// <summary>
-        /// 
+        /// Displays the quiz statistics after the quiz was submitted
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The button that raised the event.</param>
+        /// <param name="e">The event args.</param>
         private void lStats_Click(object sender, MouseButtonEventArgs e)
         {
             string mbText = "";
@@ -196,7 +195,7 @@ namespace A288
             mbText += "Test finished!" + Environment.NewLine;
             mbText += "Your score: " + percent.ToString("##0.00%") + ", meaning " + right.ToString() + " of " + QUIZ.Count + Environment.NewLine;
             mbText += "Do you wish review your answers?" + Environment.NewLine;
-            mbText += "[YES] - Compare your answers(highlited)" + Environment.NewLine + "      with the correct answers (marked [TRUE])." + Environment.NewLine;
+            mbText += "[YES] - Compare your answers(highlighted)" + Environment.NewLine + "      with the correct answers (marked [TRUE])." + Environment.NewLine;
             mbText += "[NO] - Quit and exit.";
             MessageBoxResult dr = MessageBox.Show(mbText, "Results", MessageBoxButton.YesNo, MessageBoxImage.Information, MessageBoxResult.Yes);
             if (dr == MessageBoxResult.No) this.Close();
@@ -270,7 +269,6 @@ namespace A288
             string[] var = q.Vars;
             Label[] btns = new Label[] { a1, a2, a3, a4, a5 };
             for (int i = 0; i < 5; i++) btns[i].Content = var[i];
-            //a1.Content = var[0];            a2.Content = var[1];            a3.Content = var[2];            a4.Content = var[3];            a5.Content = var[4];
             bool[] uAns = q.UserAnswers;
             loadUserAnswers(uAns);
             cQ = nr;
@@ -291,7 +289,7 @@ namespace A288
         }
 
         /// <summary>
-        /// Set all the answer buttons to un-checked state.
+        /// Set all the answer buttons to unchecked state.
         /// </summary>
         private void resetButtons()
         {
@@ -303,7 +301,7 @@ namespace A288
         }
 
         /// <summary>
-        /// Set an answer button to a checked or un-checked state.
+        /// Set an answer button to a checked or unchecked state.
         /// </summary>
         /// <param name="l">The answer button who's state we'll change.</param>
         /// <param name="state">The state of the button that will be set.</param>
@@ -317,12 +315,12 @@ namespace A288
             ckStyle.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));//#FFFFFFFFFF
             switch (state)
             {
-                case true://checked
+                case true: //checked
                     {
                         l.Foreground = ckStyle.Foreground;
                         l.Background = ckStyle.Background;
                     }break;
-                case false://un-checked
+                case false: //unchecked
                     {
                         l.Background = neutralStyle.Background;
                         l.Foreground = neutralStyle.Foreground;
@@ -336,7 +334,7 @@ namespace A288
         }//setButtonState
             
         /// <summary>
-        /// End the quiz by evaluating the questions, calculation the score and un-binding the answer buttons
+        /// End the quiz by evaluating the questions, calculation the score and unbinding the answer buttons
         /// </summary>
         private void endTheQuiz()
         {

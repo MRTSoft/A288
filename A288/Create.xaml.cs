@@ -28,15 +28,14 @@ namespace A288
     public partial class Create : Window
     {
         //TODO [OPTIONAL] Add graphical elements.
-        //TODO [OPTIONAL] Add a marking system to the test (max points or smth like that).
+        //TODO [OPTIONAL] Add a marking system to the test (maximum points or something like that).
 
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
         //                                          M E M B E R S
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
         private List<qData> QUIZ;//!< Contains the questions.
-        private int curentQ;//!< The curent question that is being edited. \note The first question is refered as 1 but is stored in \ref QUIZ[0]
-
+        private int currentQ;//!< The current question that is being edited. \note The first question is referred as 1 but is stored in \ref QUIZ[0]
 
 
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -52,7 +51,7 @@ namespace A288
             InitializeComponent();
             QUIZ = new List<qData>(1);
             QUIZ.Add(new qData());
-            curentQ = 1;
+            currentQ = 1;
             nQuestions.Text = "0";
             nTime.Text = "0";
         }
@@ -70,12 +69,13 @@ namespace A288
         /// Displays an OpenFileDialog and creates a quiz from an existing XML file.
         /// </summary>
         /// \note None of the parameters is used.
+        /// 
         /// <param name="sender">The bLoadXml Button.</param>
         /// <param name="e">The Click events args</param>
         private void bLoad_Xml(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-            dlg.Filter = "eXtensible Markup Language files |*.xml; *.XML | All files | *.*";
+            dlg.Filter = "eXtensible Mark-up Language files |*.xml; *.XML | All files | *.*";
             dlg.FilterIndex = 0;
             Nullable<bool> ok = dlg.ShowDialog();
             if (ok == true)
@@ -85,7 +85,7 @@ namespace A288
                 removeInvalid();
                 if (QUIZ.Count() > 0)
                     loadQuestion(1);
-                curentQ = 1;
+                currentQ = 1;
                 nTime.Text = qData.MaxTime.ToString();
                 nQuestions.Text = qData.UsableQuestions.ToString();
                 tabWrapper.SelectedIndex++;
@@ -97,6 +97,7 @@ namespace A288
         /// Displays an OpenFileDialog and creates a quiz from an existing TXT file.
         /// </summary>
         /// \note None of the parameters is used.
+        /// 
         /// <param name="sender">The bLoadTxt Button</param>
         /// <param name="e">The Click event args.</param>
         private void bLoad_Txt(object sender, RoutedEventArgs e)
@@ -111,7 +112,7 @@ namespace A288
                 removeInvalid();
                 if (QUIZ.Count() > 0)
                     loadQuestion(1);
-                curentQ = 1;
+                currentQ = 1;
                 nTime.Text = qData.MaxTime.ToString();
                 nQuestions.Text = qData.UsableQuestions.ToString();
                 tabWrapper.SelectedIndex++;
@@ -122,6 +123,7 @@ namespace A288
         /// Advances to the next tab.
         /// </summary>
         /// \note None of the parameters is used.
+        /// 
         /// <param name="sender">The button that was clicked.</param>
         /// <param name="e">The event args.</param>
         private void bNext_Tab(object sender, RoutedEventArgs e)
@@ -134,9 +136,10 @@ namespace A288
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         /// <summary>
-        /// Trigers the loading of a specific question (selected as the new index).
+        /// Triggers the loading of a specific question (selected as the new index).
         /// </summary>
         /// \note None of the parameters is used.
+        /// 
         /// <param name="sender">The cbNumber ComboBox.</param>
         /// <param name="e">The event args.</param>
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -150,35 +153,38 @@ namespace A288
         /// Advances to the next question.
         /// </summary>
         /// \note None of the parameters is used.
+        /// 
         /// <param name="sender">The bQNext Button</param>
         /// <param name="e">The event args.</param>
         private void bQNext_Click(object sender, RoutedEventArgs e)
         {
             if (saveCurQ())
-                loadQuestion(curentQ + 1);
+                loadQuestion(currentQ + 1);
         }//bQNext_Click
 
         /// <summary>
         /// Goes back to the previous question.
         /// </summary>
         /// \note None of the parameters is used.
+        /// 
         /// <param name="sender">The bQPrev Button.</param>
         /// <param name="e">The event args.</param>
         private void bQPrev_Click(object sender, RoutedEventArgs e)
         {
             string er = "";
-            if (QUIZ[curentQ - 1].Validate(ref er) != true)
+            if (QUIZ[currentQ - 1].Validate(ref er) != true)
             {
-                QUIZ.RemoveAt(curentQ - 1);
+                QUIZ.RemoveAt(currentQ - 1);
             }
             else saveCurQ();
-            loadQuestion(curentQ - 1);
+            loadQuestion(currentQ - 1);
         }
 
         /// <summary>
         /// Delete the current question.
         /// </summary>
         /// \note None of the parameters is used.
+        /// 
         /// <param name="sender">The bDelete Button.</param>
         /// <param name="e">The event args.</param>
         private void bDelete_Click(object sender, RoutedEventArgs e)
@@ -187,10 +193,10 @@ namespace A288
             if (QUIZ.Count == 1) QUIZ[0] = new qData();
             else
             {
-                QUIZ.RemoveAt(curentQ - 1);
+                QUIZ.RemoveAt(currentQ - 1);
             }
-            if (curentQ > QUIZ.Count) curentQ = QUIZ.Count;
-            loadQuestion(curentQ);
+            if (currentQ > QUIZ.Count) currentQ = QUIZ.Count;
+            loadQuestion(currentQ);
         }
 
         // 3. Quiz Options
@@ -257,7 +263,7 @@ namespace A288
         private void bSave_Xml(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.Filter = "eXtensible Markup Language files (.xml)|*.xml; *.XML | All files | *.*";
+            dlg.Filter = "eXtensible Mark-up Language files (.xml)|*.xml; *.XML | All files | *.*";
             dlg.FilterIndex = 0;
             Nullable<bool> ok = dlg.ShowDialog();
             if (ok == true)
@@ -299,6 +305,7 @@ namespace A288
         /// Loads a specific question on the WPF controls.
         /// </summary>
         /// \note This function calls refreshCombolist();
+        /// 
         /// <param name="nr">The index of the question + 1.</param>
         private void loadQuestion(int nr)// index starts with 1
         {
@@ -319,7 +326,7 @@ namespace A288
             if (nr - 1 <= 0) bQPrev.Visibility = System.Windows.Visibility.Hidden;
             else bQPrev.Visibility = System.Windows.Visibility.Visible;
 
-            curentQ = nr;
+            currentQ = nr;
             refreshComboList();
         }
 
@@ -356,7 +363,7 @@ namespace A288
                 lbl.HorizontalContentAlignment = System.Windows.HorizontalAlignment.Center;
                 cbNumber.Items.Add(lbl);
             }
-            cbNumber.SelectedIndex = curentQ - 1;
+            cbNumber.SelectedIndex = currentQ - 1;
             cbNumber.SelectionChanged += comboBox_SelectionChanged;
         }
 
@@ -380,21 +387,21 @@ namespace A288
         }
 
         /// <summary>
-        /// Saves or updates the curent question into the QUIZ list.
+        /// Saves or updates the current question into the QUIZ list.
         /// </summary>
         /// This function can also display errors if the question is invalid.
         /// <param name="supressError">If this is set to 'true' then no errors will be shown to the user.</param>
-        /// <returns>'true' if the question was saved/updated with succes and 'false' otherwise.</returns>
+        /// <returns>'true' if the question was saved/updated with success and 'false' otherwise.</returns>
         private bool saveCurQ(bool supressError=false)
         {
-            int i = curentQ - 1;
+            int i = currentQ - 1;
             qData q = new qData(tbText.Text, tbA1.Text, (bool)cb1.IsChecked, tbA2.Text, (bool)cb2.IsChecked, tbA3.Text, (bool)cb3.IsChecked, tbA4.Text, (bool)cb4.IsChecked, tbA5.Text, (bool)cb5.IsChecked);
             string er = "";
             if (q.Validate(ref er) == true)
             {
                 try
                 {
-                    QUIZ[curentQ - 1] = q;
+                    QUIZ[currentQ - 1] = q;
                     return true;
                 }
                 catch (Exception ex)
