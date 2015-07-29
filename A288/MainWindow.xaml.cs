@@ -76,6 +76,7 @@ namespace A288
             finally
             {
                 this.Show();
+                MessageBox.Show("Hello!");
             }//finally
         }//start_Click
     }//MainWindow
