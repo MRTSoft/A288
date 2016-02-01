@@ -10,5 +10,4 @@ The first is a form for creating a quiz. We support multiple ways of creating it
 
 The second component is a form for practicing a quiz. The program supports timed quizzes and shuffles both the questions and the answers. After submitting the questions the user can see a detailed report of what he/she has done.
 
-For more info about the program please read the documentation at http://project-a288.net16.net/ or http://project-a288.2fh.co/
 
